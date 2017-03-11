@@ -60,7 +60,7 @@ DEB_CONFIGURE_EXTRA_FLAGS := \
 	--disable-srvloc --enable-zeroconf	\
 	--enable-ddp				\
 	--without-libevent			\
-	--with-init-style=debian-systemd		\
+	--with-init-style=debian-sysv		\
 	--localstatedir=/var/lib		\
 	--enable-debian
 
@@ -102,8 +102,6 @@ install/netatalk::
 # rename the usr/bin/asip-status.pl binary
 binary-post-install/netatalk::
 	mv $(CURDIR)/debian/netatalk/usr/bin/asip-status.pl $(CURDIR)/debian/netatalk/usr/bin/asip-status
-	dh_systemd_enable -pnetatalk
-	dh_systemd_start -pnetatalk
 
 # Install the example afp.conf configuration file
 binary-post-install/netatalk::
@@ -141,7 +139,7 @@ CDBS_BUILD_DEPENDS += , $(openssl_build_depends)
 endif
 
 # Needed for our packaging routines
-CDBS_BUILD_DEPENDS += , d-shlibs, dh-systemd
+CDBS_BUILD_DEPENDS += , d-shlibs
 
 # Needed (always/often/seldom) at runtime
 #  * netbase needed by network-facing daemons
