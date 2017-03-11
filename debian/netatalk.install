@@ -1,3 +1,4 @@
+etc/init.d/netatalk
 etc/pam.d/netatalk
 etc/netatalk/extmap.conf
 etc/netatalk/afp.conf
